@@ -9,6 +9,114 @@ namespace E_Signature.Tests.Sources
         private static string _secretKey = "Very secret super string";
         private static string _expectedJson = _actualJSON;
 
+        public static object[] ValidCaseForTryGetSingMethod =
+        {
+            new object[]
+            {
+                _actualJSON,
+                _secretKey,
+                true
+            },
+            new object[]
+            {
+                null,
+                _secretKey,
+                false
+            },
+            new object[]
+            {
+                _actualJSON,
+                null,
+                false
+            }
+        };
+
+        public static object[] ValidCaseForTryGetSingMethodAndDateTime =
+        {
+            new object[]
+            {
+                null,
+                _secretKey,
+                new DateTime(2000,1,1),
+                false
+            },
+            new object[]
+            {
+                _actualJSON,
+                null,
+                new DateTime(1,1,1),
+                false
+            }
+        };
+
+        public static object[] ValidCaseForTryConfirmSingMethod =
+        {
+            new object[]
+            {
+                _actualJSON,
+                _secretKey,
+                TimeSpan.FromSeconds(1),
+                true
+            },
+            new object[]
+            {
+                null,
+                _secretKey,
+                TimeSpan.FromSeconds(1),
+                false
+            },
+            new object[]
+            {
+                _actualJSON,
+                null,
+                TimeSpan.FromSeconds(1),
+                false
+            },
+            new object[]
+            {
+                null,
+                null,
+                TimeSpan.FromSeconds(1),
+                false
+            }
+        };
+
+        public static object[] ValidCaseForTryConfirmSingMethodAndDateTime =
+        {
+            new object[]
+            {
+                _actualJSON,
+                _secretKey,
+                TimeSpan.FromSeconds(1),
+                new DateTime(2020,10,10),
+                true
+            },
+            new object[]
+            {
+                null,
+                _secretKey,
+                TimeSpan.FromSeconds(1),
+                new DateTime(2020,1,1),
+                false
+            },
+            new object[]
+            {
+                _actualJSON,
+                null,
+                TimeSpan.FromSeconds(1),
+                new DateTime(10,1,1),
+                false
+            },
+            new object[]
+            {
+                null,
+                null,
+                TimeSpan.FromSeconds(1),
+                new DateTime(),
+                false
+            }
+        };
+
         public static object[] ValidCasesForGetSingMethod =
         {
             new object[]

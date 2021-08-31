@@ -1,19 +1,18 @@
-using System;
 using E_Signature.Tests.Sources;
-using System.Collections;
-using NUnit.Framework;
 using FluentAssertions;
+using NUnit.Framework;
+using System;
 
 namespace E_Signature.Tests
 {
-    public class Tests
+    public class SignatureTests
     {
         [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCasesForGetSingMethod))]
         public void GetSing_WhenValidTestPassed_ShouldReturnSing(string actualJSON, string secretKey, string expectedJson)
         {
             Signature.Configure(TimeSpan.FromSeconds(1));
 
-            var actualSing = Signature.GetSing(actualJSON,secretKey);
+            var actualSing = Signature.GetSing(actualJSON, secretKey);
 
             var expectedSing = Signature.GetSing(expectedJson, secretKey);
 
@@ -34,7 +33,7 @@ namespace E_Signature.Tests
         [TestCaseSource(typeof(SingSources), nameof(SingSources.InvalidCaseWhenBodyIsNullOrEmptyForGetSingMethod))]
         public void GetSing_WhenTestIsNotValid_ShouldGenerateArgumentNullExceptionForBody(string actualJSON, string secretKey)
         {
-            Action act =()=> Signature.GetSing(actualJSON, secretKey);
+            Action act = () => Signature.GetSing(actualJSON, secretKey);
 
             act.Should().Throw<ArgumentNullException>();
         }
@@ -89,5 +88,52 @@ namespace E_Signature.Tests
 
             act.Should().Throw<ArgumentException>();
         }
+
+        [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCaseForTryGetSingMethod))]
+        public void TryGetSing_WhenValidTestPassed_ShouldReturnTrueOrFalse(string actualJSON, string secretKey, bool expected)
+        {
+            Signature.Configure(TimeSpan.FromMilliseconds(50));
+
+            string sing = string.Empty;
+            var actual = Signature.TryGetSing(actualJSON, secretKey, out sing);
+
+            actual.Should().Be(expected);
+        }
+
+        [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCaseForTryGetSingMethodAndDateTime))]
+        public void TryGetSing_WhenValidTestPassed_ShouldReturnTrueOrFalse(string actualJSON, string secretKey, DateTime currentTime, bool expected)
+        {
+            Signature.Configure(TimeSpan.FromMilliseconds(50));
+
+            string sing = string.Empty;
+            var actual = Signature.TryGetSing(actualJSON, secretKey, currentTime, out sing);
+
+            actual.Should().Be(expected);
+        }
+
+        [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCaseForTryConfirmSingMethod))]
+        public void TryConfirmSing_WhenValidTestPassed_ShouldReturnTrueOrFalse(string inputJson, string secretKey, TimeSpan timeDrift, bool expected)
+        {
+            Signature.Configure(TimeSpan.FromMilliseconds(50));
+            var sing = string.Empty;
+            Signature.TryGetSing(inputJson, secretKey, out sing);
+
+            var actual = Signature.TryConfirmSing(inputJson, sing, secretKey, timeDrift);
+
+            actual.Should().Be(expected);
+        }
+
+        [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCaseForTryConfirmSingMethodAndDateTime))]
+        public void TryConfirmSing_WhenValidTestPassed_ShouldReturnTrueOrFalse(string inputJson, string secretKey, TimeSpan timeDrift, DateTime time, bool expected)
+        {
+            Signature.Configure(TimeSpan.FromMilliseconds(50));
+            var sing = string.Empty;
+            Signature.TryGetSing(inputJson, secretKey, time, out sing);
+
+            var actual = Signature.TryConfirmSing(inputJson, sing, secretKey, timeDrift, time);
+
+            actual.Should().Be(expected);
+        }
+
     }
 }
