@@ -1,18 +1,19 @@
 using System;
+using E_Signature.Tests.Sources;
 using NUnit.Framework;
 
 namespace E_Signature.Tests
 {
     public class Tests
     {
-        [Test]
+        [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCasesForGetSingMethod))]
         public void GetSing_WhenValidTestPassed_ShouldReturnSing(string actualJSON, string secretKey, string expectedJson)
         {
             //var actualSing = Signature.GetSing(actualJSON,secretKey);
 
             //var expectedSing = Signature.GetSing(expectedJson, secretKey);
 
-            Assert.AreEqual(expectedJson, actualJSON);
+            Assert.Equals(expectedJson, actualJSON);
         }
 
         [Test]
