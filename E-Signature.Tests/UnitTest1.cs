@@ -20,6 +20,17 @@ namespace E_Signature.Tests
             actualSing.Should().Be(expectedSing);
         }
 
+        [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCasesForConfirmSingMethod))]
+        public void ConfirmSing_WhenValidTestPassed_ShouldReturnBool(string inputJson, string secretKey, TimeSpan timeDrift, bool expected)
+        {
+            Signature.Configure(TimeSpan.FromMilliseconds(10));
+            var inputSing = Signature.GetSing(inputJson, secretKey);
+
+            var actual = Signature.ConfirmSing(inputJson, inputSing, secretKey, timeDrift);
+
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestCaseSource(typeof(SingSources), nameof(SingSources.InvalidCaseWhenBodyIsNullOrEmptyForGetSingMethod))]
         public void GetSing_WhenTestIsNotValid_ShouldGenerateArgumentNullExceptionForBody(string actualJSON, string secretKey)
         {
@@ -34,17 +45,6 @@ namespace E_Signature.Tests
             Action act = () => Signature.GetSing(actualJSON, secretKey);
 
             act.Should().Throw<ArgumentNullException>();
-        }
-
-        [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCasesForConfirmSingMethod))]
-        public void ConfirmSing_WhenValidTestPassed_ShouldReturnBool(string inputJson, string secretKey, TimeSpan timeDrift, bool expected)
-        {
-            Signature.Configure(TimeSpan.FromMilliseconds(10));
-            var inputSing = Signature.GetSing(inputJson, secretKey);
-            
-            var actual = Signature.ConfirmSing(inputJson, inputSing, secretKey, timeDrift);
-
-            Assert.AreEqual(expected, actual);
         }
 
         [TestCaseSource(typeof(SingSources), nameof(SingSources.InvalidCasesWhenBodyIsNullOrEmptyForConfirmSingMethod))]

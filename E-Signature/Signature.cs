@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using E_Signature.Extensions;
 
 namespace E_Signature
@@ -36,7 +37,7 @@ namespace E_Signature
             }
         }
 
-        public static bool ConfirmSing(string inputBody, string inputSing, string secretKey, TimeSpan timeDrift)
+        public static string GetSing(string inputBody, string secretKey, DateTime time)
         {
             if (!string.IsNullOrEmpty(inputBody) && !string.IsNullOrEmpty(secretKey))
             {
