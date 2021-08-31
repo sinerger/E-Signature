@@ -36,7 +36,7 @@ namespace E_Signature
             }
         }
 
-        private static string GetSing(string inputBody, string secretKey, DateTime time)
+        public static bool ConfirmSing(string inputBody, string inputSing, string secretKey, TimeSpan timeDrift)
         {
             if (!string.IsNullOrEmpty(inputBody) && !string.IsNullOrEmpty(secretKey))
             {

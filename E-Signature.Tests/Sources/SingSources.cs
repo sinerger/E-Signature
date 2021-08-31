@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace E_Signature.Tests.Sources
 {
@@ -18,7 +19,7 @@ namespace E_Signature.Tests.Sources
             }
         };
 
-        public static object[] ValidCasesForIsValidSingMethod =
+        public static object[] ValidCasesForConfirmSingMethod =
         {
             new object[]
             {
@@ -26,6 +27,95 @@ namespace E_Signature.Tests.Sources
                 _secretKey,
                 TimeSpan.FromMinutes(1),
                 true
+            }
+        };
+
+        public static object[] InvalidCaseWhenBodyIsNullOrEmptyForGetSingMethod =
+        {
+            new object[]
+            {
+                null,
+                _secretKey
+            },
+            new object[]
+            {
+                String.Empty,
+                _secretKey
+            }
+        };
+
+        public static object[] InvalidCaseWhenSecretKeyIsNullOrEmptyForForGetSingMethod =
+        {
+            new object[]
+            {
+                _actualJSON,
+                null
+            },
+            new object[]
+            {
+                _actualJSON,
+                String.Empty
+
+            }
+        };
+
+        public static object[] InvalidCasesWhenBodyIsNullOrEmptyForConfirmSingMethod =
+        {
+            new object[]
+            {
+                null,
+                _secretKey,
+                TimeSpan.FromMinutes(1)
+            },
+            new object[]
+            {
+                String.Empty,
+                _secretKey,
+                TimeSpan.FromMinutes(1)
+            }
+        };
+
+        public static object[] InvalidCasesWhenSecretKeyIsNullOrEmptyForConfirmSingMethod =
+        {
+            new object[]
+            {
+                _actualJSON,
+                null,
+                TimeSpan.FromMinutes(1)
+            },
+            new object[]
+            {
+                _actualJSON,
+                String.Empty,
+                TimeSpan.FromMinutes(1)
+            }
+        };
+
+        public static object[] InvalidCasesWhenInputSingIsNullOrEmptyForConfirmSingMethod =
+        {
+            new object[]
+            {
+                _actualJSON,
+                _secretKey,
+                TimeSpan.FromMinutes(1),
+                null
+            },
+            new object[]
+            {
+                _actualJSON,
+                _secretKey,
+                TimeSpan.FromMinutes(1),
+                String.Empty
+            }
+        };
+
+        public static object[] InvalidCasesWhenTimeDriftHasDefaultValueForConfirmSingMethod =
+        {
+            new object[]
+            {
+                _actualJSON,
+                _secretKey,
+                default
             }
         };
     }
