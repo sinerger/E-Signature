@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 namespace E_Signature.Tests.Sources
 {
     public class SingSources
     {
-        private static string _actualJSON;
-        private static string _secretKey;
-        private static string _expectedJson;
+        private static string _actualJSON = "{\"name\":\"john\",\"age\":22,\"class\":\"mca\"}";
+        private static string _secretKey = "Very secret super string";
+        private static string _expectedJson = _actualJSON;
 
         public static object[] ValidCasesForGetSingMethod =
         {
@@ -21,12 +18,15 @@ namespace E_Signature.Tests.Sources
             }
         };
 
-        static SingSources()
+        public static object[] ValidCasesForIsValidSingMethod =
         {
-            _actualJSON =
-                "{\"name\":\"john\",\"age\":22,\"class\":\"mca\"}";
-            _expectedJson = _actualJSON;
-            _secretKey = "Very secret super string";
-        }
+            new object[]
+            {
+                _actualJSON,
+                _secretKey,
+                TimeSpan.FromMinutes(1),
+                true
+            }
+        };
     }
 }

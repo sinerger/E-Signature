@@ -1,6 +1,8 @@
 using System;
 using E_Signature.Tests.Sources;
+using System.Collections;
 using NUnit.Framework;
+using FluentAssertions;
 
 namespace E_Signature.Tests
 {
@@ -9,21 +11,24 @@ namespace E_Signature.Tests
         [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCasesForGetSingMethod))]
         public void GetSing_WhenValidTestPassed_ShouldReturnSing(string actualJSON, string secretKey, string expectedJson)
         {
-            //var actualSing = Signature.GetSing(actualJSON,secretKey);
+            Signature.Configure(TimeSpan.FromSeconds(1));
 
-            //var expectedSing = Signature.GetSing(expectedJson, secretKey);
+            var actualSing = Signature.GetSing(actualJSON,secretKey);
 
-            Assert.Equals(expectedJson, actualJSON);
+            var expectedSing = Signature.GetSing(expectedJson, secretKey);
+
+            actualSing.Should().Be(expectedSing);
         }
 
-        [Test]
+        [TestCaseSource(typeof(SingSources), nameof(SingSources.ValidCasesForIsValidSingMethod))]
         public void IsValidSing_WhenValidTestPassed_ShouldReturnBool(string inputJson, string secretKey, TimeSpan timeDrift, bool expected)
         {
-            //var inputSing = Signature.GetSing(inputJson,secretKey);
+            Signature.Configure(TimeSpan.FromMilliseconds(10));
+            var inputSing = Signature.GetSing(inputJson, secretKey);
+            
+            var actual = Signature.IsValidSing(inputJson, inputSing, secretKey, timeDrift);
 
-            //var actual = Signature.IsValidSing(inputJson, inputSing, secretKey, timeDrift);
-
-            //Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
