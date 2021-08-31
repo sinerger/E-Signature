@@ -26,7 +26,7 @@ namespace E_Signature.Tests
             Signature.Configure(TimeSpan.FromMilliseconds(10));
             var inputSing = Signature.GetSing(inputJson, secretKey);
             
-            var actual = Signature.IsValidSing(inputJson, inputSing, secretKey, timeDrift);
+            var actual = Signature.ConfirmSing(inputJson, inputSing, secretKey, timeDrift);
 
             Assert.AreEqual(expected, actual);
         }
