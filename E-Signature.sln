@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Signature", "E-Signature\E-Signature.csproj", "{2B9825CC-FD05-41CE-BC80-18100CC36827}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Signature.Tests", "E-Signature.Tests\E-Signature.Tests.csproj", "{00D08D3E-F342-4B3B-BE72-1E7C4D72379C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E_Signature", "E_Signature\E_Signature.csproj", "{A14DCC25-4AD5-4322-9A2F-BE50751D48A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2B9825CC-FD05-41CE-BC80-18100CC36827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B9825CC-FD05-41CE-BC80-18100CC36827}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B9825CC-FD05-41CE-BC80-18100CC36827}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B9825CC-FD05-41CE-BC80-18100CC36827}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00D08D3E-F342-4B3B-BE72-1E7C4D72379C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00D08D3E-F342-4B3B-BE72-1E7C4D72379C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00D08D3E-F342-4B3B-BE72-1E7C4D72379C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00D08D3E-F342-4B3B-BE72-1E7C4D72379C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A14DCC25-4AD5-4322-9A2F-BE50751D48A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14DCC25-4AD5-4322-9A2F-BE50751D48A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A14DCC25-4AD5-4322-9A2F-BE50751D48A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14DCC25-4AD5-4322-9A2F-BE50751D48A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

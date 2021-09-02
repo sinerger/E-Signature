@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>r.potyrai</Authors>
+    <Company>WizardsDev</Company>
+    <Description>Package for creating signature for Json objects</Description>
+    <RepositoryUrl>https://bitbucket.org/maxiwidgets/e-signature/pull-requests/</RepositoryUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://bitbucket.org/maxiwidgets/e-signature/pull-requests/</PackageProjectUrl>
+  </PropertyGroup>
+
+</Project>

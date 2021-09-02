@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\E-Signature\E-Signature.csproj" />
+    <ProjectReference Include="..\E_Signature\E_Signature.csproj" />
   </ItemGroup>
 
 </Project>
